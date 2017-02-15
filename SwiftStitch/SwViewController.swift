@@ -44,24 +44,51 @@ class SwViewController: UIViewController, UIScrollViewDelegate {
         self.spinner.startAnimating()
         DispatchQueue.global().async {
             
-            let image1 = UIImage(named:"pano_19_16_mid.jpg")
-            let image2 = UIImage(named:"pano_19_20_mid.jpg")
-            let image3 = UIImage(named:"pano_19_22_mid.jpg")
-            let image4 = UIImage(named:"pano_19_25_mid.jpg")
+            let ratio:CGFloat = 0.10
             
-            let imageArray:[UIImage?] = [image1,image2,image3,image4]
+            let imageNames = ["IMG_2399.jpg",
+                             "IMG_2400.jpg",
+                             "IMG_2401.jpg",
+                             "IMG_2402.jpg",
+                             "IMG_2403.jpg",
+                             "IMG_2404.jpg",
+                             "IMG_2409.jpg",
+                             "IMG_2411.jpg",
+                             "IMG_2415.jpg",
+                             "IMG_2417.jpg",
+                             "IMG_2421.jpg",
+                             "IMG_2425.jpg",
+                             "IMG_2426.jpg",
+                             "IMG_2427.jpg",
+                             "IMG_2430.jpg",
+                             "IMG_2432.jpg",
+                             "IMG_2434.jpg",
+                             "IMG_2440.jpg",
+                             "IMG_2441.jpg",
+                             "IMG_2445.jpg",
+                             "IMG_2450.jpg",
+                             "IMG_2451.jpg"
+                             ]
             
-            let stitchedImage:UIImage = CVWrapper.process(with: imageArray as! [UIImage]) as UIImage
+            var imgArray:[UIImage?] = []
+            for name in imageNames {
+                let img = self.compressToRatio(image: UIImage(named: name)!, ratio: ratio)
+                imgArray.append(img)
+            }
+            
+            let stitchedImage:UIImage = CVWrapper.process(with: imgArray as! [UIImage]) as UIImage
+            
             
             DispatchQueue.main.async {
                 NSLog("stichedImage %@", stitchedImage)
-                let imageView:UIImageView = UIImageView.init(image: stitchedImage)
-                self.imageView = imageView
+                
+                self.imageView = UIImageView.init(image: self.flipV(im: stitchedImage))
+                
                 self.scrollView.addSubview(self.imageView!)
                 self.scrollView.backgroundColor = UIColor.black
                 self.scrollView.contentSize = self.imageView!.bounds.size
                 self.scrollView.maximumZoomScale = 4.0
-                self.scrollView.minimumZoomScale = 0.5
+                self.scrollView.minimumZoomScale = 1.0
                 self.scrollView.delegate = self
                 self.scrollView.contentOffset = CGPoint(x: -(self.scrollView.bounds.size.width - self.imageView!.bounds.size.width)/2.0, y: -(self.scrollView.bounds.size.height - self.imageView!.bounds.size.height)/2.0)
                 NSLog("scrollview \(self.scrollView.contentSize)")
@@ -70,9 +97,42 @@ class SwViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+    func compressToRatio(image:UIImage, ratio: CGFloat) -> UIImage? {
+        let compressedSize:CGSize = CGSize(width: image.size.width * ratio, height: image.size.height * ratio)
+        UIGraphicsBeginImageContext(compressedSize)
+        image.draw(in: CGRect(x:0, y:0, width: compressedSize.width, height: compressedSize.height))
+        if let compressedImage = UIGraphicsGetImageFromCurrentImageContext() {
+            UIGraphicsEndImageContext()
+            return compressedImage
+        }
+        return nil
+    }
+    
+    func flipV(im:UIImage)->UIImage {
+        var newOrient:UIImageOrientation
+        switch im.imageOrientation {
+        case .up:
+            newOrient = .downMirrored
+        case .upMirrored:
+            newOrient = .down
+        case .down:
+            newOrient = .upMirrored
+        case .downMirrored:
+            newOrient = .up
+        case .left:
+            newOrient = .leftMirrored
+        case .leftMirrored:
+            newOrient = .left
+        case .right:
+            newOrient = .rightMirrored
+        case .rightMirrored:
+            newOrient = .right
+        }
+        return UIImage(cgImage: im.cgImage!, scale: im.scale, orientation: newOrient)
+    }
     
     func viewForZooming(in scrollView:UIScrollView) -> UIView? {
         return self.imageView!
     }
-    
+        
 }
