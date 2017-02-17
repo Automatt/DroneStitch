@@ -63,6 +63,7 @@ class SwViewController: UIViewController, UIScrollViewDelegate, CTAssetsPickerCo
     func assetsPickerController(_ picker: CTAssetsPickerController, didFinishPicking assets: [PHAsset]) {
         
         picked = true
+        self.spinner.startAnimating()
 
         picker.dismiss(animated: true) {
             var imgArray:[UIImage?] = []
@@ -78,7 +79,7 @@ class SwViewController: UIViewController, UIScrollViewDelegate, CTAssetsPickerCo
 
             DispatchQueue.main.async {
                 NSLog("stichedImage %@", stitchedImage)
-                
+            
                 self.imageView = UIImageView.init(image: stitchedImage)
                 
                 self.scrollView.addSubview(self.imageView!)
@@ -105,63 +106,7 @@ class SwViewController: UIViewController, UIScrollViewDelegate, CTAssetsPickerCo
         })
         return thumbnail
     }
-    
-    func stitch() {
-        self.spinner.startAnimating()
-        DispatchQueue.global().async {
-            
-            let ratio:CGFloat = 0.10
-            
-            let imageNames = ["IMG_2399.jpg",
-                             "IMG_2400.jpg",
-                             "IMG_2401.jpg",
-                             "IMG_2402.jpg",
-                             "IMG_2403.jpg",
-                             "IMG_2404.jpg",
-                             "IMG_2409.jpg",
-                             "IMG_2411.jpg",
-                             "IMG_2415.jpg",
-                             "IMG_2417.jpg",
-                             "IMG_2421.jpg",
-                             "IMG_2425.jpg",
-                             "IMG_2426.jpg",
-                             "IMG_2427.jpg",
-                             "IMG_2430.jpg",
-                             "IMG_2432.jpg",
-                             "IMG_2434.jpg",
-                             "IMG_2440.jpg",
-                             "IMG_2441.jpg",
-                             "IMG_2445.jpg",
-                             "IMG_2450.jpg",
-                             "IMG_2451.jpg"
-                             ]
-            
-            var imgArray:[UIImage?] = []
-            for name in imageNames {
-                let img = self.compressToRatio(image: UIImage(named: name)!, ratio: ratio)
-                imgArray.append(img)
-            }
-            
-            let stitchedImage:UIImage = CVWrapper.process(with: imgArray as! [UIImage]) as UIImage
-            
-            DispatchQueue.main.async {
-                NSLog("stichedImage %@", stitchedImage)
-                
-                self.imageView = UIImageView.init(image: self.flipV(im: stitchedImage))
-                
-                self.scrollView.addSubview(self.imageView!)
-                self.scrollView.backgroundColor = UIColor.black
-                self.scrollView.contentSize = self.imageView!.bounds.size
-                self.scrollView.maximumZoomScale = 4.0
-                self.scrollView.minimumZoomScale = 1.0
-                self.scrollView.delegate = self
-                self.scrollView.contentOffset = CGPoint(x: -(self.scrollView.bounds.size.width - self.imageView!.bounds.size.width)/2.0, y: -(self.scrollView.bounds.size.height - self.imageView!.bounds.size.height)/2.0)
-                NSLog("scrollview \(self.scrollView.contentSize)")
-                self.spinner.stopAnimating()
-            }
-        }
-    }
-    
+        
     func compressToRatio(image:UIImage, ratio: CGFloat) -> UIImage? {
         let compressedSize:CGSize = CGSize(width: image.size.width * ratio, height: image.size.height * ratio)
         UIGraphicsBeginImageContext(compressedSize)
