@@ -15,6 +15,7 @@ class SwViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var scrollView:UIScrollView!
     
     var assets: [PHAsset]?
+    var stitchedImage: UIImage?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -46,6 +47,13 @@ class SwViewController: UIViewController, UIScrollViewDelegate {
 
     }
     
+    @IBAction func buttonShareAction(_ sender: Any) {
+        if let image = self.stitchedImage {
+            let vc = UIActivityViewController(activityItems: ["DroneStitch Image", image], applicationActivities: [])
+            present(vc, animated: true, completion: nil)
+        }
+        
+    }
     
     func stitch() {
         
@@ -57,15 +65,15 @@ class SwViewController: UIViewController, UIScrollViewDelegate {
                 imgArray.append(img)
             }
             
-            let stitchedImage:UIImage = CVWrapper.process(with: imgArray as! [UIImage]) as UIImage
+            self.stitchedImage = CVWrapper.process(with: imgArray as! [UIImage]) as UIImage
             
             DispatchQueue.main.async {
                 
                 self.spinner.startAnimating()
 
-                NSLog("stichedImage %@", stitchedImage)
+                NSLog("stichedImage %@", self.stitchedImage ?? "no image")
                 
-                self.imageView = UIImageView.init(image: stitchedImage)
+                self.imageView = UIImageView.init(image: self.stitchedImage)
                 
                 self.scrollView.addSubview(self.imageView!)
                 self.scrollView.backgroundColor = UIColor.black

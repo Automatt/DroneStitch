@@ -50,11 +50,10 @@ class StartViewController: UIViewController, CTAssetsPickerControllerDelegate {
         
         self.assetsPicked = assets
         
-        picker.dismiss(animated: true) {
-    
-            DispatchQueue.main.async {
-                self.performSegue(withIdentifier: "stitchSegue", sender: nil)
-            }
+        picker.dismiss(animated: true, completion: nil)
+        
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "stitchSegue", sender: nil)
         }
     }
 
