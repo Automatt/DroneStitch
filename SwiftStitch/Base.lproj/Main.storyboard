@@ -29,7 +29,7 @@
                                     <action selector="buttonChooseAction:" destination="QPa-Ri-Qhn" eventType="touchUpInside" id="La1-wv-mga"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TTq-Ne-0b6">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TTq-Ne-0b6">
                                 <rect key="frame" x="121.66666666666669" y="686" width="171" height="30"/>
                                 <state key="normal" title="Stitch with Demo Images"/>
                             </button>

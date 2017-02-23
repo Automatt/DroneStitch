@@ -50,7 +50,7 @@ class SwViewController: UIViewController, UIScrollViewDelegate {
     func stitch() {
         
         var imgArray:[UIImage?] = []
-        let ratio:CGFloat = 0.10
+        let ratio:CGFloat = 0.08
         if let assets = assets {
             for asset in assets {
                 let img = self.compressToRatio(image: self.getAssetImage(asset: asset), ratio: ratio)
