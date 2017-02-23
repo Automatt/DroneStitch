@@ -26,6 +26,8 @@
 	<true/>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Photos from the photo library are needed to stich together a panorama</string>
+	<key>UILaunchStoryboardName</key>
+	<string>Main</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

@@ -15,12 +15,12 @@
 		AB896A8A193E8E830018B9EC /* SwViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB896A89193E8E830018B9EC /* SwViewController.swift */; };
 		AB896A8D193E8E830018B9EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB896A8B193E8E830018B9EC /* Main.storyboard */; };
 		ABAA668D1BD420BE00BD6A45 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAA668C1BD420BE00BD6A45 /* UIImage+Rotate.m */; };
-		AFAB42831E54BC41001E43DF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFAB42821E54BC41001E43DF /* Images.xcassets */; };
+		AFBBACDC1E5E21D5006F1D0E /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBBACDB1E5E21D5006F1D0E /* StartViewController.swift */; };
+		AFBBACDE1E5F93F9006F1D0E /* AssetCatalog.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFBBACDD1E5F93F9006F1D0E /* AssetCatalog.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0FA3B7E894CDFDAB7F252237 /* Pods-DroneStitch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DroneStitch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DroneStitch/Pods-DroneStitch.debug.xcconfig"; sourceTree = "<group>"; };
-		1764185B82161420C2EC7AFF /* Pods-SwiftStitch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftStitch.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftStitch/Pods-SwiftStitch.release.xcconfig"; sourceTree = "<group>"; };
 		743631B40AD60550E43EF555 /* Pods-DroneStitch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DroneStitch.release.xcconfig"; path = "Pods/Target Support Files/Pods-DroneStitch/Pods-DroneStitch.release.xcconfig"; sourceTree = "<group>"; };
 		892F2A236E15A098AAAD2E29 /* Pods_DroneStitch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DroneStitch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB6D1AEE193F9B6600F8B0F5 /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.markdown; sourceTree = "<group>"; };
@@ -39,8 +39,8 @@
 		AB896A8C193E8E830018B9EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ABAA668B1BD420BE00BD6A45 /* UIImage+Rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate.h"; sourceTree = "<group>"; };
 		ABAA668C1BD420BE00BD6A45 /* UIImage+Rotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Rotate.m"; sourceTree = "<group>"; };
-		AFAB42821E54BC41001E43DF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		D497FD36175911BCF60F3C7B /* Pods-SwiftStitch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftStitch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftStitch/Pods-SwiftStitch.debug.xcconfig"; sourceTree = "<group>"; };
+		AFBBACDB1E5E21D5006F1D0E /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		AFBBACDD1E5F93F9006F1D0E /* AssetCatalog.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AssetCatalog.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,13 +77,13 @@
 		AB896A84193E8E830018B9EC /* DroneStitch */ = {
 			isa = PBXGroup;
 			children = (
-				AFAB42821E54BC41001E43DF /* Images.xcassets */,
 				ABAA668B1BD420BE00BD6A45 /* UIImage+Rotate.h */,
 				ABAA668C1BD420BE00BD6A45 /* UIImage+Rotate.m */,
 				AB7D8E78193E928E0059EE63 /* UIImage+OpenCV.h */,
 				AB7D8E79193E928E0059EE63 /* UIImage+OpenCV.mm */,
 				AB896A87193E8E830018B9EC /* AppDelegate.swift */,
 				AB896A89193E8E830018B9EC /* SwViewController.swift */,
+				AFBBACDB1E5E21D5006F1D0E /* StartViewController.swift */,
 				AB896A8B193E8E830018B9EC /* Main.storyboard */,
 				AB7D8E7B193E92B80059EE63 /* CVWrapper.h */,
 				AB7D8E7C193E92B80059EE63 /* CVWrapper.mm */,
@@ -91,6 +91,7 @@
 				AB7D8E7F193E92C30059EE63 /* stitching.h */,
 				AB896A85193E8E830018B9EC /* Supporting Files */,
 				AB7D8E77193E928D0059EE63 /* SwiftStitch-Bridging-Header.h */,
+				AFBBACDD1E5F93F9006F1D0E /* AssetCatalog.xcassets */,
 			);
 			name = DroneStitch;
 			path = SwiftStitch;
@@ -107,8 +108,6 @@
 		C5A4E8DDF38AD8F12E7709CF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D497FD36175911BCF60F3C7B /* Pods-SwiftStitch.debug.xcconfig */,
-				1764185B82161420C2EC7AFF /* Pods-SwiftStitch.release.xcconfig */,
 				0FA3B7E894CDFDAB7F252237 /* Pods-DroneStitch.debug.xcconfig */,
 				743631B40AD60550E43EF555 /* Pods-DroneStitch.release.xcconfig */,
 			);
@@ -188,8 +187,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFBBACDE1E5F93F9006F1D0E /* AssetCatalog.xcassets in Resources */,
 				AB896A8D193E8E830018B9EC /* Main.storyboard in Resources */,
-				AFAB42831E54BC41001E43DF /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB896A8A193E8E830018B9EC /* SwViewController.swift in Sources */,
+				AFBBACDC1E5E21D5006F1D0E /* StartViewController.swift in Sources */,
 				AB7D8E80193E92C30059EE63 /* stitching.cpp in Sources */,
 				ABAA668D1BD420BE00BD6A45 /* UIImage+Rotate.m in Sources */,
 				AB7D8E7A193E928E0059EE63 /* UIImage+OpenCV.mm in Sources */,

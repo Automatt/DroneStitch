@@ -7,15 +7,14 @@
 //
 
 import UIKit
-import CTAssetsPickerController
 
-class SwViewController: UIViewController, UIScrollViewDelegate, CTAssetsPickerControllerDelegate {
+class SwViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet var spinner:UIActivityIndicatorView!
     @IBOutlet var imageView:UIImageView?
     @IBOutlet var scrollView:UIScrollView!
     
-    var picked: Bool = false
+    var assets: [PHAsset]?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -31,6 +30,7 @@ class SwViewController: UIViewController, UIScrollViewDelegate, CTAssetsPickerCo
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -41,45 +41,30 @@ class SwViewController: UIViewController, UIScrollViewDelegate, CTAssetsPickerCo
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if !picked {
-            pick()
-        }
-        //stitch()
-    }
-    
-    func pick() {
-        let picker: CTAssetsPickerController = CTAssetsPickerController()
-        picker.delegate = self
         
-        self.present(picker, animated: true, completion: nil)
-    }
-    
-    func assetsPickerControllerDidCancel(_ picker: CTAssetsPickerController) {
-        
-        picker.dismiss(animated: true, completion: nil)
-        
-    }
-    
-    func assetsPickerController(_ picker: CTAssetsPickerController, didFinishPicking assets: [PHAsset]) {
-        
-        picked = true
-        self.spinner.startAnimating()
+        stitch()
 
-        picker.dismiss(animated: true) {
-            var imgArray:[UIImage?] = []
-            let ratio:CGFloat = 0.10
-
+    }
+    
+    
+    func stitch() {
+        
+        var imgArray:[UIImage?] = []
+        let ratio:CGFloat = 0.10
+        if let assets = assets {
             for asset in assets {
-                let img = self.compressToRatio(image: self.getAssetImageThumbnail(asset: asset), ratio: ratio)
+                let img = self.compressToRatio(image: self.getAssetImage(asset: asset), ratio: ratio)
                 imgArray.append(img)
             }
             
-            
             let stitchedImage:UIImage = CVWrapper.process(with: imgArray as! [UIImage]) as UIImage
-
-            DispatchQueue.main.async {
-                NSLog("stichedImage %@", stitchedImage)
             
+            DispatchQueue.main.async {
+                
+                self.spinner.startAnimating()
+
+                NSLog("stichedImage %@", stitchedImage)
+                
                 self.imageView = UIImageView.init(image: stitchedImage)
                 
                 self.scrollView.addSubview(self.imageView!)
@@ -90,23 +75,23 @@ class SwViewController: UIViewController, UIScrollViewDelegate, CTAssetsPickerCo
                 self.scrollView.delegate = self
                 self.scrollView.contentOffset = CGPoint(x: -(self.scrollView.bounds.size.width - self.imageView!.bounds.size.width)/2.0, y: -(self.scrollView.bounds.size.height - self.imageView!.bounds.size.height)/2.0)
                 NSLog("scrollview \(self.scrollView.contentSize)")
+                
                 self.spinner.stopAnimating()
             }
         }
-
     }
     
-    func getAssetImageThumbnail(asset: PHAsset) -> UIImage {
+    func getAssetImage(asset: PHAsset) -> UIImage {
         let manager = PHImageManager.default()
         let option = PHImageRequestOptions()
-        var thumbnail = UIImage()
+        var image = UIImage()
         option.isSynchronous = true
         manager.requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: option, resultHandler: {(result, info)->Void in
-            thumbnail = result!
+            image = result!
         })
-        return thumbnail
+        return image
     }
-        
+    
     func compressToRatio(image:UIImage, ratio: CGFloat) -> UIImage? {
         let compressedSize:CGSize = CGSize(width: image.size.width * ratio, height: image.size.height * ratio)
         UIGraphicsBeginImageContext(compressedSize)
