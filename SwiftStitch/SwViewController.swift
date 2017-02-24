@@ -102,7 +102,7 @@ class SwViewController: UIViewController, UIScrollViewDelegate {
         let option = PHImageRequestOptions()
         var image = UIImage()
         
-        let targetSize = CGSize(width: 640, height: 480)
+        let targetSize = CGSize(width: 320, height: 240)
 
         option.isSynchronous = true
         option.isNetworkAccessAllowed = true
