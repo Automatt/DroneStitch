@@ -58,11 +58,11 @@ class SwViewController: UIViewController, UIScrollViewDelegate {
     func stitch() {
         
         var imgArray:[UIImage?] = []
-        let ratio:CGFloat = 0.08
         if let assets = assets {
             for asset in assets {
-                let img = self.compressToRatio(image: self.getAssetImage(asset: asset), ratio: ratio)
-                imgArray.append(img)
+                let image = self.getAssetImage(asset: asset)
+                //let img = self.compressToRatio(image: image, ratio: ratio)
+                imgArray.append(image)
             }
             
             if let inputImages = imgArray as? [UIImage] {
@@ -101,24 +101,20 @@ class SwViewController: UIViewController, UIScrollViewDelegate {
         let manager = PHImageManager.default()
         let option = PHImageRequestOptions()
         var image = UIImage()
+        
+        let targetSize = CGSize(width: 640, height: 480)
+
         option.isSynchronous = true
-        manager.requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: option, resultHandler: {(result, info)->Void in
+        option.isNetworkAccessAllowed = true
+        option.resizeMode = .fast
+        option.deliveryMode = .fastFormat
+        
+        manager.requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFit, options: option, resultHandler: {(result, info)->Void in
             if let returnedImage = result {
                 image = returnedImage
             }
         })
         return image
-    }
-    
-    func compressToRatio(image:UIImage, ratio: CGFloat) -> UIImage? {
-        let compressedSize:CGSize = CGSize(width: image.size.width * ratio, height: image.size.height * ratio)
-        UIGraphicsBeginImageContext(compressedSize)
-        image.draw(in: CGRect(x:0, y:0, width: compressedSize.width, height: compressedSize.height))
-        if let compressedImage = UIGraphicsGetImageFromCurrentImageContext() {
-            UIGraphicsEndImageContext()
-            return compressedImage
-        }
-        return nil
     }
     
     func flipV(im:UIImage)->UIImage {
