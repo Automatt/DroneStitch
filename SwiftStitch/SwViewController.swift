@@ -65,26 +65,34 @@ class SwViewController: UIViewController, UIScrollViewDelegate {
                 imgArray.append(img)
             }
             
-            self.stitchedImage = CVWrapper.process(with: imgArray as! [UIImage]) as UIImage
-            
-            DispatchQueue.main.async {
+            if let inputImages = imgArray as? [UIImage] {
                 
-                self.spinner.startAnimating()
+                self.stitchedImage = CVWrapper.process(with: inputImages) as UIImage
+                
+                DispatchQueue.main.async {
+                    
+                    self.spinner.startAnimating()
 
-                NSLog("stichedImage %@", self.stitchedImage ?? "no image")
-                
-                self.imageView = UIImageView.init(image: self.stitchedImage)
-                
-                self.scrollView.addSubview(self.imageView!)
-                self.scrollView.backgroundColor = UIColor.black
-                self.scrollView.contentSize = self.imageView!.bounds.size
-                self.scrollView.maximumZoomScale = 4.0
-                self.scrollView.minimumZoomScale = 1.0
-                self.scrollView.delegate = self
-                self.scrollView.contentOffset = CGPoint(x: -(self.scrollView.bounds.size.width - self.imageView!.bounds.size.width)/2.0, y: -(self.scrollView.bounds.size.height - self.imageView!.bounds.size.height)/2.0)
-                NSLog("scrollview \(self.scrollView.contentSize)")
-                
+                    NSLog("stichedImage %@", self.stitchedImage ?? "no image")
+                    
+                    self.imageView = UIImageView.init(image: self.stitchedImage)
+                    
+                    self.scrollView.addSubview(self.imageView!)
+                    self.scrollView.backgroundColor = UIColor.black
+                    self.scrollView.contentSize = self.imageView!.bounds.size
+                    self.scrollView.maximumZoomScale = 4.0
+                    self.scrollView.minimumZoomScale = 1.0
+                    self.scrollView.delegate = self
+                    self.scrollView.contentOffset = CGPoint(x: -(self.scrollView.bounds.size.width - self.imageView!.bounds.size.width)/2.0, y: -(self.scrollView.bounds.size.height - self.imageView!.bounds.size.height)/2.0)
+                    NSLog("scrollview \(self.scrollView.contentSize)")
+                    
+                    self.spinner.stopAnimating()
+                }
+            } else {
                 self.spinner.stopAnimating()
+                let alertController = UIAlertController(title: "Drone Stitch", message: "Sorry, but something went wrong while fetching images", preferredStyle: UIAlertControllerStyle.alert)
+                alertController.addAction(UIAlertAction(title:"Ok", style: .default, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
             }
         }
     }
@@ -95,7 +103,9 @@ class SwViewController: UIViewController, UIScrollViewDelegate {
         var image = UIImage()
         option.isSynchronous = true
         manager.requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: option, resultHandler: {(result, info)->Void in
-            image = result!
+            if let returnedImage = result {
+                image = returnedImage
+            }
         })
         return image
     }
