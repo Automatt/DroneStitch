@@ -102,7 +102,7 @@ class SwViewController: UIViewController, UIScrollViewDelegate {
         let option = PHImageRequestOptions()
         var image = UIImage()
         
-        let targetSize = CGSize(width: 320, height: 240)
+        let targetSize = CGSize(width: 1280, height: 960)
 
         option.isSynchronous = true
         option.isNetworkAccessAllowed = true
@@ -142,6 +142,17 @@ class SwViewController: UIViewController, UIScrollViewDelegate {
     
     func viewForZooming(in scrollView:UIScrollView) -> UIView? {
         return self.imageView!
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let vc = segue.destination as? PanoViewController {
+            if let image = self.stitchedImage {
+                vc.panoImage = image
+            }
+        }
+        
     }
         
 }

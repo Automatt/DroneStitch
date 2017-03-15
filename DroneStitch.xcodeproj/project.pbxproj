@@ -15,8 +15,10 @@
 		AB896A8A193E8E830018B9EC /* SwViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB896A89193E8E830018B9EC /* SwViewController.swift */; };
 		AB896A8D193E8E830018B9EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB896A8B193E8E830018B9EC /* Main.storyboard */; };
 		ABAA668D1BD420BE00BD6A45 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAA668C1BD420BE00BD6A45 /* UIImage+Rotate.m */; };
+		AF7362201E78928800187D2D /* PanoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF73621F1E78928800187D2D /* PanoViewController.swift */; };
 		AFBBACDC1E5E21D5006F1D0E /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBBACDB1E5E21D5006F1D0E /* StartViewController.swift */; };
 		AFBBACDE1E5F93F9006F1D0E /* AssetCatalog.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFBBACDD1E5F93F9006F1D0E /* AssetCatalog.xcassets */; };
+		AFD7AF601E788B610086BE2E /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = AFD7AF5F1E788B610086BE2E /* Podfile */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,8 +41,10 @@
 		AB896A8C193E8E830018B9EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ABAA668B1BD420BE00BD6A45 /* UIImage+Rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate.h"; sourceTree = "<group>"; };
 		ABAA668C1BD420BE00BD6A45 /* UIImage+Rotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Rotate.m"; sourceTree = "<group>"; };
+		AF73621F1E78928800187D2D /* PanoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanoViewController.swift; sourceTree = "<group>"; };
 		AFBBACDB1E5E21D5006F1D0E /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		AFBBACDD1E5F93F9006F1D0E /* AssetCatalog.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AssetCatalog.xcassets; sourceTree = "<group>"; };
+		AFD7AF5F1E788B610086BE2E /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,7 @@
 				AB896A85193E8E830018B9EC /* Supporting Files */,
 				AB7D8E77193E928D0059EE63 /* SwiftStitch-Bridging-Header.h */,
 				AFBBACDD1E5F93F9006F1D0E /* AssetCatalog.xcassets */,
+				AF73621F1E78928800187D2D /* PanoViewController.swift */,
 			);
 			name = DroneStitch;
 			path = SwiftStitch;
@@ -100,6 +105,7 @@
 		AB896A85193E8E830018B9EC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AFD7AF5F1E788B610086BE2E /* Podfile */,
 				AB896A86193E8E830018B9EC /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -187,6 +193,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFD7AF601E788B610086BE2E /* Podfile in Resources */,
 				AFBBACDE1E5F93F9006F1D0E /* AssetCatalog.xcassets in Resources */,
 				AB896A8D193E8E830018B9EC /* Main.storyboard in Resources */,
 			);
@@ -247,6 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF7362201E78928800187D2D /* PanoViewController.swift in Sources */,
 				AB896A8A193E8E830018B9EC /* SwViewController.swift in Sources */,
 				AFBBACDC1E5E21D5006F1D0E /* StartViewController.swift in Sources */,
 				AB7D8E80193E92C30059EE63 /* stitching.cpp in Sources */,

@@ -11,5 +11,6 @@ use_frameworks!
 target 'DroneStitch' do
     pod 'OpenCV', '~> 3.1.0.1'
     pod 'CTAssetsPickerController', :git => 'https://github.com/cdwat/CTAssetsPickerController'
+    pod 'CTPanoramaView', :git => 'https://github.com/scihant/CTPanoramaView.git'
 end
 

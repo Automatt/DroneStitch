@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12113" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cNb-tT-jiF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cNb-tT-jiF">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12078"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -77,7 +77,7 @@
                                 <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </scrollView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="3AV-ht-xfb">
-                                <rect key="frame" x="188" y="349" width="37" height="37"/>
+                                <rect key="frame" x="188.66666666666666" y="349.66666666666669" width="37" height="37"/>
                             </activityIndicatorView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zoo-jq-02U">
                                 <rect key="frame" x="0.0" y="692" width="414" height="44"/>
@@ -85,6 +85,11 @@
                                     <barButtonItem systemItem="action" id="NwF-4A-oXd">
                                         <connections>
                                             <action selector="buttonShareAction:" destination="BYZ-38-t0r" id="amh-et-7K4"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Pano View" id="dvn-AE-pZc">
+                                        <connections>
+                                            <segue destination="zEP-Xk-3wy" kind="showDetail" id="RrC-Fg-y2j"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -112,6 +117,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1000.0000000000001" y="138.58695652173915"/>
+        </scene>
+        <!--Panorama View-->
+        <scene sceneID="0aD-hh-HLz">
+            <objects>
+                <viewController title="Panorama View" id="zEP-Xk-3wy" customClass="PanoViewController" customModule="DroneStitch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Mcz-bF-qn3"/>
+                        <viewControllerLayoutGuide type="bottom" id="bDW-LP-nex"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ESn-db-rfR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qtm-ki-c3X" customClass="CTPanoramaView" customModule="CTPanoramaView">
+                                <rect key="frame" x="0.0" y="28" width="414" height="708"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qtm-ki-c3X" firstAttribute="leading" secondItem="ESn-db-rfR" secondAttribute="leading" id="ImL-5i-X6H"/>
+                            <constraint firstAttribute="trailing" secondItem="qtm-ki-c3X" secondAttribute="trailing" id="XCZ-5K-9GW"/>
+                            <constraint firstItem="qtm-ki-c3X" firstAttribute="top" secondItem="Mcz-bF-qn3" secondAttribute="bottom" constant="8" id="sQa-6a-4Ru"/>
+                            <constraint firstItem="bDW-LP-nex" firstAttribute="top" secondItem="qtm-ki-c3X" secondAttribute="bottom" id="xN2-Ol-mGH"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="panoView" destination="qtm-ki-c3X" id="9fT-TL-n9f"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oiZ-fV-9HY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1989.8550724637682" y="141.84782608695653"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="caS-U2-382">
